@@ -14,7 +14,7 @@ function App() {
 
   const fetchStatus = async () => {
     try {
-      const res = await fetch('http://localhost:8000/api/status');
+      const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8000'}/api/status`);
       const data = await res.json();
       setStatus(data);
     } catch (err) {
@@ -25,7 +25,7 @@ function App() {
 
   const fetchThreats = async () => {
     try {
-      const res = await fetch('http://localhost:8000/api/threats');
+      const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8000'}/api/threats`);
       const data = await res.json();
       if (data.status === 'success') {
         setThreats(data.data);
@@ -38,7 +38,7 @@ function App() {
   const runMission = async () => {
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:8000/api/mission');
+      const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8000'}/api/mission`);
       const data = await res.json();
       if (data.status === 'success') {
         setMissionData(data.data);
